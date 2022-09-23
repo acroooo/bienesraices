@@ -1,13 +1,15 @@
 import express from 'express'; // ES6 import'
 
+// Routes import
+import userRoutes from './routes/auth/userRoutes.js';
+
+
+
 const app = express(); // Create an express app
-// Define a port to run the server on
 const port = 3000;
 
-// routing
-app.get('/', (req, res) => {
-    res.send('Express!')
-})
+// Routing
+app.use('/', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
