@@ -1,0 +1,35 @@
+{
+  "name": "bienesraices_mvc",
+  "version": "1.0.0",
+  "description": "proyecto de bienes raíces",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "MVC",
+    "Pug",
+    "Node",
+    "Tailwind",
+    "Express",
+    "MySQL",
+    "Sequelize"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acroooo/bienesraices.git"
+  },
+  "author": "Hernán Chamorro <hernang.work@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acroooo/bienesraices/issues"
+  },
+  "homepage": "https://github.com/acroooo/bienesraices#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
