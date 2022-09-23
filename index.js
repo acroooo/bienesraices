@@ -1,7 +1,6 @@
-const express = require('express');
+import express from 'express'; // ES6 import'
 
 const app = express(); // Create an express app
-
 // Define a port to run the server on
 const port = 3000;
 
