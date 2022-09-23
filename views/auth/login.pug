@@ -1,6 +1,9 @@
-div
-    h2 Login 
-    if state
-        p Usuario autenticado
-    else
-        p Inicia sesión
+extends ../layouts/index
+
+block content
+    div
+        h2.text-center Login 
+        if state
+            p Usuario autenticado
+        else
+            p Inicia sesión

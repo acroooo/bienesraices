@@ -16,6 +16,9 @@ app.set('views', './views'); // Set the views folder
 // Routing
 app.use('/auth', userRoutes);
 
+// public
+app.use(express.static('public'));
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
