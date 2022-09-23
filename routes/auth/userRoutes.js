@@ -2,9 +2,11 @@ import express from 'express';
 
 const router = express.Router();
 
-router.route('/')
+router.route('/login')
     .get((req, res) => {
-        res.send('Hello World!');
+        res.render('./auth/login', {
+            state: true,
+        });
     })
     .post((req, res) => {
         res.json({ res: 'respuesta de tipo post' })
