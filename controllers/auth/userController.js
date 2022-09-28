@@ -1,3 +1,5 @@
+// import models
+import User from '../../models/User.js';
 
 // Form Login
 const loginForm = (req, res) => {
@@ -17,7 +19,9 @@ const signupForm = (req, res) => {
 
 // Registrar usuario
 const register = async (req, res) => {
-    console.log("register user")
+    const user = await User.create(req.body)
+
+    res.json(user)
 }
 
 // Form Recuperar contraseña
