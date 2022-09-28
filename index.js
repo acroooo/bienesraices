@@ -9,10 +9,14 @@ const port = 3000;
 // Connect to the database
 try {
     await db.authenticate()
+    db.sync()
     console.log('Connection has been established successfully.')
 } catch (e) {
     console.log(e);
 }
+
+// allow to read data from the body
+app.use(express.urlencoded({ extended: true }));
 
 // Configuration
 app.set('view engine', 'pug'); // Set the view engine to pug

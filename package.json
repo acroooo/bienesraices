@@ -30,6 +30,7 @@
   "homepage": "https://github.com/acroooo/bienesraices#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "express-validator": "^6.14.2",
     "mysql2": "^2.3.3",
     "pug": "^3.0.2",
     "sequelize": "^6.23.2"
