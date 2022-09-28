@@ -6,4 +6,22 @@ block content
             span.font-normal Raíces
         h2.text-center.font-extrabold.text-2xl=title
 
-        .mt-8
+        .mt-8.mx-auto.max-w-md
+            .bg-white.py-8.px-4.shadow
+                form
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombre") Nombre completo
+                        input#nombre.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. Jhon Doe", type="text", name="Nombre")
+                    div.mt-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Dirección de email
+                        input#email.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. jhon@doe.com", type="email", name="Email")
+
+                    div.mt-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
+                        input#password.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ingrese más de 8 dígitos", type="password", name="Password")
+
+                    div.mt-5.mb-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password_confirmation") Confirme contraseña
+                        input#password_confirmation.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Confirma tu contraseña", type="password", name="Password Confirmation")
+
+                    input(class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3" type="submit" value="CREAR CUENTA")
