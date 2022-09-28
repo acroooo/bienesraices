@@ -1,9 +1,20 @@
 extends ../layouts/index
 
 block content
-    div
+    .py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Bienes
+            span.font-normal Raíces
         h2.text-center.font-extrabold.text-2xl=title
-        if state
-            p Usuario autenticado
-        else
-            p Inicia sesión
+
+        .mt-8.mx-auto.max-w-md
+            .bg-white.py-8.px-4.shadow
+                form
+                    div.mt-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Dirección de email
+                        input#email.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. jhon@doe.com", type="email", name="Email")
+
+                    div.mt-5.mb-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
+                        input#password.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="*******", type="password", name="Password")
+
+                    input(class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3" type="submit" value="CREAR CUENTA")
