@@ -1,3 +1,5 @@
+
+// Form Login
 const loginForm = (req, res) => {
     res.render('./auth/login', {
         state: true,
@@ -5,6 +7,7 @@ const loginForm = (req, res) => {
     });
 };
 
+// Form Registro
 const signupForm = (req, res) => {
     res.render('./auth/signup', {
         state: true,
@@ -12,6 +15,12 @@ const signupForm = (req, res) => {
     });
 };
 
+// Registrar usuario
+const register = async (req, res) => {
+    console.log("register user")
+}
+
+// Form Recuperar contraseña
 const recoverPasswordForm = (req, res) => {
     res.render('./auth/recoverPassword', {
         title: 'Recuperar acceso',
@@ -21,5 +30,6 @@ const recoverPasswordForm = (req, res) => {
 export {
     loginForm,
     signupForm,
-    recoverPasswordForm
+    recoverPasswordForm,
+    register,
 };
