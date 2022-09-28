@@ -12,7 +12,14 @@ const signupForm = (req, res) => {
     });
 };
 
+const recoverPasswordForm = (req, res) => {
+    res.render('./auth/recoverPassword', {
+        title: 'Recuperar acceso',
+    })
+}
+
 export {
-        loginForm,
-        signupForm,
+    loginForm,
+    signupForm,
+    recoverPasswordForm
 };
