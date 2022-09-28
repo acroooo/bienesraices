@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "proyecto de bienes raíces",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "css": "postcss public/css/tailwind.css -o public/css/app.css --watch"
   },
   "keywords": [
     "MVC",
@@ -27,9 +29,14 @@
   },
   "homepage": "https://github.com/acroooo/bienesraices#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "autoprefixer": "^10.4.12",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "tailwindcss": "^3.1.8"
   }
 }
