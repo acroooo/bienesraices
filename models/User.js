@@ -28,6 +28,7 @@ const User = db.define('users', {
     },
     token: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     confirm: {
         type: DataTypes.BOOLEAN,
