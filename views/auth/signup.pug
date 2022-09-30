@@ -16,10 +16,10 @@ block content
                 form.space-y-5(method="POST" action="/auth/signup" noValidate autocomplete="on")
                     div 
                         label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombre") Nombre completo
-                        input#nombre.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. Jhon Doe", type="text", name="name")
+                        input#nombre.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. Jhon Doe", type="text", name="name" value=user ? user.name : "")
                     div.mt-5
                         label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Dirección de email
-                        input#email.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. jhon@doe.com", type="email", name="email")
+                        input#email.w-full.px-3.py-3.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ej. jhon@doe.com", type="email", name="email" value=user ? user.email : "")
 
                     div.mt-5
                         label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
