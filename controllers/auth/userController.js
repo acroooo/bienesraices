@@ -20,8 +20,6 @@ const signupForm = (req, res) => {
 
 // Registrar usuario
 const register = async (req, res) => {
-
-    console.log(req.body)
     //validation
     await check('name').notEmpty().withMessage('El campo nombre no puede estar vacío').run(req)
     await check('email').isEmail().notEmpty().withMessage('Coloque un email del tipo email@ejemplo.com').run(req)
@@ -48,18 +46,24 @@ const register = async (req, res) => {
         })
     }
     
+    // extract data
+    const { name, email, password } = req.body
+
     // verify if user exists
-    const userExists = await User.findOne({ email: req.body.email })
+    const userExists = await User.findOne({ where: { email } })
+
     if (userExists) {
         return res.render('./auth/signup', {
             title: 'Crear cuenta',
             errors: [{ msg: 'El usuario ya existe' }],
             user: {
-                name: req.body.name,
+                name: name,
                 email: req.body.email,
             }
         })
     }
+
+
 
 
 
