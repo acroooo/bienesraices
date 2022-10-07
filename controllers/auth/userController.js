@@ -72,6 +72,13 @@ const register = async (req, res) => {
         password,
         token: generateId(),
     })
+
+
+    // message success confirmation
+    res.render('messages/message', {
+        title: "Cuenta creada correctamente",
+        message: "Se ha enviado un correo de confirmación a su e-mail. Presiona en el enlace para completar el proceso.",
+    })
 }
 
 // Form Recuperar contraseña
