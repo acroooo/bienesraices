@@ -1,6 +1,8 @@
 import {check, validationResult} from 'express-validator'
 // import models
 import User from '../../models/User.js';
+// helpers
+import { generateId } from '../../helpers/tokens.js';
 
 // Form Login
 const loginForm = (req, res) => {
@@ -68,7 +70,7 @@ const register = async (req, res) => {
         name,
         email,
         password,
-        token: 123,
+        token: generateId(),
     })
 }
 
