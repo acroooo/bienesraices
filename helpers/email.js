@@ -23,12 +23,12 @@ const emailSignup = async (data) => {
         subject: 'Confirmar cuenta | Inmobiliaria Soldati',
         text: 'Confirmar cuenta | Inmobiliaria Soldati',
         html: `
-            <h1>Confirmar cuenta</h1>
-            <p>Hola ${name}</p>
-            <p>Para confirmar tu cuenta, haz click en el siguiente enlace</p>
+            <p>Hola ${name}, confirma tu cuenta de inmobiliariasoldati.com</p>
+            <p>Tu cuenta ya esta lista. Por favor, accede con el siguiente enlace para confirmar tu cuenta.</p>
             <a href="">Confirmar Cuenta</a>
 
             <p>Si no has creado una cuenta, ignora este mensaje</p>
+            <p>Atentamente, Grupo Soldati</p>
         `
     })
 }

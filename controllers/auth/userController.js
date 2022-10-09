@@ -96,9 +96,17 @@ const recoverPasswordForm = (req, res) => {
     })
 }
 
+
+// Form Confirmar email cuenta
+const confirmAccount = (req, res) => {
+    token = req.params.token
+}
+
 export {
     loginForm,
     signupForm,
     recoverPasswordForm,
     register,
+    confirmAccount,
 };
+
