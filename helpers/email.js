@@ -25,7 +25,7 @@ const emailSignup = async (data) => {
         html: `
             <p>Hola ${name}, confirma tu cuenta de inmobiliariasoldati.com</p>
             <p>Tu cuenta ya esta lista. Por favor, accede con el siguiente enlace para confirmar tu cuenta.</p>
-            <a href="">Confirmar Cuenta</a>
+            <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/confirm/${token}">Confirmar Cuenta</a>
 
             <p>Si no has creado una cuenta, ignora este mensaje</p>
             <p>Atentamente, Grupo Soldati</p>
