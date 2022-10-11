@@ -3,6 +3,7 @@ import {check, validationResult} from 'express-validator'
 import User from '../../models/User.js';
 // helpers
 import { generateId } from '../../helpers/tokens.js';
+import { emailSignup } from '../../helpers/email.js';
 
 // Form Login
 const loginForm = (req, res) => {
@@ -72,6 +73,20 @@ const register = async (req, res) => {
         password,
         token: generateId(),
     })
+
+    // send confirmation email
+    emailSignup({
+        name: user.name,
+        email: user.email,
+        token: user.token,
+    })
+
+
+    // message success confirmation
+    res.render('messages/message', {
+        title: "Cuenta creada correctamente",
+        message: "Se ha enviado un correo de confirmación a su e-mail. Presiona en el enlace para completar el proceso.",
+    })
 }
 
 // Form Recuperar contraseña
@@ -81,9 +96,17 @@ const recoverPasswordForm = (req, res) => {
     })
 }
 
+
+// Form Confirmar email cuenta
+const confirmAccount = (req, res) => {
+    token = req.params.token
+}
+
 export {
     loginForm,
     signupForm,
     recoverPasswordForm,
     register,
+    confirmAccount,
 };
+
