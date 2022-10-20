@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginForm, signupForm, recoverPasswordForm, register, confirmAccount, } from '../../controllers/auth/userController.js';
+import { loginForm, signupForm, recoverPasswordForm, register, confirmAccount, resetPassword} from '../../controllers/auth/userController.js';
 const router = express.Router();
 
 // login
@@ -13,6 +13,7 @@ router.post('/signup', register);
 router.get('/confirm/:token', confirmAccount);
 
 // recuperar contraseña
-router.get('/recover-password', recoverPasswordForm);
+router.get('/reset-password', recoverPasswordForm);
+router.post('/reset-password', resetPassword);
 
 export default router;

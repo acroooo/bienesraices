@@ -95,10 +95,14 @@ const register = async (req, res) => {
 // Form Recuperar contraseña
 const recoverPasswordForm = (req, res) => {
     res.render('./auth/recoverPassword', {
-        title: 'Recuperar acceso',
+        title: 'Recupera el acceso a tu cuenta',
+        csrfToken: req.csrfToken(),
     })
 }
 
+const resetPassword = (req, res) => {
+
+}
 
 // Confirmar email cuenta
 const confirmAccount = async (req, res) => {
