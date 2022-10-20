@@ -100,8 +100,20 @@ const recoverPasswordForm = (req, res) => {
     })
 }
 
-const resetPassword = (req, res) => {
+const resetPassword = async(req, res) => {
+    // validation
+    await check('email').isEmail().withMessage('Ingrese un email válido').run(req)
+    let resultado = validationResult(req)
 
+    // verify empty result
+    if (!resultado.isEmpty()) {
+        // errors
+        return res.render('auth/recoverPassword', {
+            title: 'Recupera el acceso a tu cuenta',
+            csrfToken: req.csrfToken(),
+            errors: resultado.array(),
+        })
+    }
 }
 
 // Confirmar email cuenta
