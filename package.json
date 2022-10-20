@@ -30,6 +30,8 @@
   "homepage": "https://github.com/acroooo/bienesraices#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "mysql2": "^2.3.3",

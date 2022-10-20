@@ -112,9 +112,17 @@ const confirmAccount = async (req, res) => {
             message: 'El token no es válido o ha expirado',
             error: true,
     })
-
-        // confirm account
     }
+    // confirm account
+    user.token = null
+    user.confirm = true
+
+    await user.save()
+
+    res.render('./auth/confirmAccount', {
+        title: 'Cuenta confirmada',
+        message: 'Tu cuenta ha sido confirmada correctamente',
+    })
 }
 
 
