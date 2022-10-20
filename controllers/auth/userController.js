@@ -97,10 +97,26 @@ const recoverPasswordForm = (req, res) => {
 }
 
 
-// Form Confirmar email cuenta
-const confirmAccount = (req, res) => {
-    token = req.params.token
+// Confirmar email cuenta
+const confirmAccount = async (req, res) => {
+    console.log(req.params)
+    const { token } = req.params
+
+    // verify token
+
+    const user = await User.findOne({ where: { token } })
+
+    if (!user) {
+        return res.render('./auth/confirmAccount', {
+            title: 'Error en la confirmación de tu cuenta',
+            message: 'El token no es válido o ha expirado',
+            error: true,
+    })
+
+        // confirm account
+    }
 }
+
 
 export {
     loginForm,
