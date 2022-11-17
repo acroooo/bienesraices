@@ -102,9 +102,10 @@ const recoverPasswordForm = (req, res) => {
 
 const resetPassword = async(req, res) => {
     // validation
-    await check('email').isEmail().withMessage('Ingrese un email válido').run(req)
+    console.log(req.body)
+    await check('email').isEmail().withMessage('Ingrese un email válido')
     let resultado = validationResult(req)
-
+    console.log(resultado)
     // verify empty result
     if (!resultado.isEmpty()) {
         // errors
@@ -115,12 +116,19 @@ const resetPassword = async(req, res) => {
         })
     }
 
-    // buscar el usuario
+    // search for the user
     const { email } = req.body
 
     const user = await User.findOne({ where: { email } })
     
-    console.log(user)
+    // user doesnt exists
+    if (!user) {
+        return res.render('auth/recoverPassword', {
+            title: 'Recupera el acceso a tu cuenta',
+            csrfToken: req.csrfToken(),
+            errors: [{ msg: 'El usuario no se encuentra registrado en el sistema'}]
+        })
+    }
 }
 
 // Confirmar email cuenta
