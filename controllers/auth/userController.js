@@ -114,6 +114,13 @@ const resetPassword = async(req, res) => {
             errors: resultado.array(),
         })
     }
+
+    // buscar el usuario
+    const { email } = req.body
+
+    const user = await User.findOne({ where: { email } })
+    
+    console.log(user)
 }
 
 // Confirmar email cuenta
@@ -151,5 +158,6 @@ export {
     recoverPasswordForm,
     register,
     confirmAccount,
+    resetPassword,
 };
 

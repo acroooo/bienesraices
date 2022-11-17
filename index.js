@@ -21,7 +21,7 @@ try {
 app.use(express.urlencoded({ extended: true }));
 
 // allow cookie parser
-app.user(cookieParser())
+app.use(cookieParser())
 
 // allow csrf
 app.use(csrf({cookie: true}))
