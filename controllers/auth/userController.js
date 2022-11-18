@@ -3,7 +3,7 @@ import {check, validationResult} from 'express-validator'
 import User from '../../models/User.js';
 // helpers
 import { generateId } from '../../helpers/tokens.js';
-import { emailSignup } from '../../helpers/email.js';
+import { emailSignup, resetPasswordEmail } from '../../helpers/email.js';
 
 // Form Login
 const loginForm = (req, res) => {
@@ -129,7 +129,36 @@ const resetPassword = async(req, res) => {
             errors: [{ msg: 'El usuario no se encuentra registrado en el sistema'}]
         })
     }
+
+    // generate token and send email
+    user.token = generateId()
+    await user.save()
+    
+    // send email
+    resetPasswordEmail({
+        name: user.name,
+        email: user.email,
+        token: user.token,
+    })
+
+    // message success
+    res.render('messages/message', {
+        title: "Reestablece tu password",
+        message: "Se ha enviado un email con las instrucciones para generar una nueva contraseña.",
+    })
 }
+
+// Validar un token
+const validateToken = async (req, res) => {
+}
+
+// Guarda la nueva contraseña
+const saveNewPassword = async (req, res) => {
+}
+
+
+
+
 
 // Confirmar email cuenta
 const confirmAccount = async (req, res) => {
@@ -167,5 +196,7 @@ export {
     register,
     confirmAccount,
     resetPassword,
+    validateToken,
+    saveNewPassword,
 };
 
