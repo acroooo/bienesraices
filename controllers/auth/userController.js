@@ -17,7 +17,7 @@ const loginForm = (req, res) => {
 };
 
 // LOGIN
-const autenticate = (req, res) => {
+const autenticate = async (req, res) => {
     // validacion
     await check('email').isEmail().withMessage('El email es obligatorio').run(req)
     await check('password').notEmpty().withMessage('La contraseña es obligatoria').run(req)
@@ -33,17 +33,18 @@ const autenticate = (req, res) => {
     }
 
     // primero encontrar si el usuario existe
-    User.findOne({
-        email: req.body.email
+    const {email, password} = req.body
+    const user = await User.findOne({
+        email: email,
     })
 
-       .then(user => {
-
-            if (user) {
-                if (user.password === req.body.password) {
-                    res.render()
-                }
-    // verificar que la contraseña es correcta
+    if(!user){
+        return res.render('auth/login', {
+            title: 'Iniciar sesión',
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'El usuario no existe'}],
+        })
+    }
 }
 
 
