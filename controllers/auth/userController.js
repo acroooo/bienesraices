@@ -188,6 +188,13 @@ const saveNewPassword = async (req, res) => {
             errors: result.array(),
         })
     }
+
+    const {token} = req.params
+    const {password} = req.body
+
+    // who change the password
+    const user = await User.findOne({where:{token}})
+
 }
 
 
