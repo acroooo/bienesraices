@@ -5,6 +5,8 @@ import User from '../../models/User.js';
 import { generateId } from '../../helpers/tokens.js';
 import { emailSignup, resetPasswordEmail } from '../../helpers/email.js';
 
+import bcrypt from 'bcrypt'
+
 // Form Login
 const loginForm = (req, res) => {
     res.render('./auth/login', {
@@ -194,6 +196,18 @@ const saveNewPassword = async (req, res) => {
 
     // who change the password
     const user = await User.findOne({where:{token}})
+
+    const salt = await bcrypt.genSalt(10)
+    user.password = await bcrypt.hash(password, salt)
+
+    usuario.token = null
+
+    await user.save()
+
+    res.render('auth/reset-password', {
+        title: 'Se ha reestablecido tu contraseña',
+        message: 'La contraseña se guardo correctamente'
+    })
 
 }
 
