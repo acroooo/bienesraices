@@ -1,8 +1,9 @@
 import {check, validationResult} from 'express-validator'
+import jwt from 'jsonwebtoken'
 // import models
 import User from '../../models/User.js';
 // helpers
-import { generateId } from '../../helpers/tokens.js';
+import { generateJWT, generateId } from '../../helpers/tokens.js';
 import { emailSignup, resetPasswordEmail } from '../../helpers/email.js';
 
 import bcrypt from 'bcrypt'
@@ -54,6 +55,18 @@ const autenticate = async (req, res) => {
             errors: [{msg: 'Tu cuenta no ha sido confirmada'}],
         })
     }
+
+    // revisar password
+    if(!user.verifyPassword(password)){
+        return res.render('auth/login', {
+            title: 'Iniciar sesión',
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'La contraseña es incorrecta'}],
+        })
+    }
+
+    // autenticar usuario
+    const token = generateJWT(user.id)
 }
 
 
