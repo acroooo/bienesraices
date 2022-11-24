@@ -1,4 +1,6 @@
 import express from 'express'; // ES6 import'
+import csrf from 'csurf'; //
+import cookieParser from 'cookie-parser'; //
 import db from './config/db.js'; 
 // Routes import
 import userRoutes from './routes/auth/userRoutes.js';
@@ -17,6 +19,12 @@ try {
 
 // allow to read data from the body
 app.use(express.urlencoded({ extended: true }));
+
+// allow cookie parser
+app.use(cookieParser())
+
+// allow csrf
+app.use(csrf({cookie: true}))
 
 // Configuration
 app.set('view engine', 'pug'); // Set the view engine to pug

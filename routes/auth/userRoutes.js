@@ -1,9 +1,10 @@
 import express from 'express';
-import { loginForm, signupForm, recoverPasswordForm, register, confirmAccount } from '../../controllers/auth/userController.js';
+import { loginForm, autenticate, signupForm, recoverPasswordForm, register, confirmAccount, resetPassword, validateToken, saveNewPassword} from '../../controllers/auth/userController.js';
 const router = express.Router();
 
 // login
 router.get('/login', loginForm);
+router.post('/login', authenticate);
 
 // registro
 router.get('/signup', signupForm);
@@ -13,6 +14,11 @@ router.post('/signup', register);
 router.get('/confirm/:token', confirmAccount);
 
 // recuperar contraseña
-router.get('/recover-password', recoverPasswordForm);
+router.get('/reset-password', recoverPasswordForm);
+router.post('/reset-password', resetPassword);
+
+// save the new password
+router.get('/reset-password/:token', validateToken);
+router.post('/reset-password/:token', saveNewPassword);
 
 export default router;
