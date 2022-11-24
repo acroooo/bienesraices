@@ -45,6 +45,15 @@ const autenticate = async (req, res) => {
             errors: [{msg: 'El usuario no existe'}],
         })
     }
+
+    // comprobar usuario confirmado
+    if(!user.confirm){
+        return res.render('auth/login', {
+            title: 'Iniciar sesión',
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'Tu cuenta no ha sido confirmada'}],
+        })
+    }
 }
 
 
