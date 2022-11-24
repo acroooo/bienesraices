@@ -182,14 +182,10 @@ const saveNewPassword = async (req, res) => {
     // verify empty result
     if(!result.isEmpty()){
         // error
-        return res.render('auth/signup', {
-            title: 'Crear cuenta',
+        return res.render('auth/reset-password', {
+            title: 'Reestablece tu contraseña',
             csrfToken: req.csrfToken(),
             errors: result.array(),
-            user: {
-                name: req.body.name,
-                email: req.body.email,
-            }
         })
     }
 }
