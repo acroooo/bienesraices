@@ -18,6 +18,19 @@ const loginForm = (req, res) => {
 
 // LOGIN
 const autenticate = (req, res) => {
+    // validacion
+    await check('email').isEmail().withMessage('El email es obligatorio').run(req)
+    await check('password').notEmpty().withMessage('La contraseña es obligatoria').run(req)
+
+    let result = validationResult(req)
+
+    if(!result.isEmpty()){
+        return res.render('auth/login', {
+            title: 'Iniciar sesión',
+            csrfToken: req.csrfToken(),
+            errors: result.array(),
+        })
+    }
 
     // primero encontrar si el usuario existe
     User.findOne({

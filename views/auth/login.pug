@@ -6,6 +6,11 @@ block content
             span.font-normal Soldati
         h2.text-center.font-extrabold.text-2xl=title
 
+        if errors
+            div(class="max-w-md mx-auto my-10")
+                each error in errors
+                    p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold=error.msg
+
         .mt-8.mx-auto.max-w-md
             .bg-white.py-8.px-4.shadow
                 form.space-y-5(method="POST" action="/auth/login")
