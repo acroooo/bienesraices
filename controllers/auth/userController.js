@@ -126,7 +126,7 @@ const resetPassword = async(req, res) => {
         return res.render('auth/recoverPassword', {
             title: 'Recupera el acceso a tu cuenta',
             csrfToken: req.csrfToken(),
-            errors: [{ msg: 'El usuario no se encuentra registrado en el sistema'}]
+            errors: [{ message: 'El usuario no se encuentra registrado en el sistema'}]
         })
     }
 
@@ -143,17 +143,55 @@ const resetPassword = async(req, res) => {
 
     // message success
     res.render('messages/message', {
-        title: "Reestablece tu password",
+        title: "Reestablece tu contraseña",
         message: "Se ha enviado un email con las instrucciones para generar una nueva contraseña.",
     })
 }
 
 // Validar un token
-const validateToken = async (req, res) => {
+const validateToken = async (req, res, next) => {
+
+    const {token} = req.params
+
+    const user = await User.findOne({
+        where: {token}
+    })
+
+    if(!user) {
+        return res.render('auth/confirmAccount', {
+            title: 'Reestablece tu contraseña',
+            message: 'Hubo un error al validar tu información, por favor, intentelo nuevamente',
+            error: true,
+    })
+    }
+
+    // user with token
+    // Form for modify password
+    res.render('auth/reset-password', {
+        title: 'Reestablece tu contraseña',
+        csrfToken: req.csrfToken()
+    })
 }
 
 // Guarda la nueva contraseña
 const saveNewPassword = async (req, res) => {
+    // validate password
+    await check('password').isLength({min: 8}).withMessage('La contraseña debe ser de mínimo 8 carácteres').run(req)
+    let result = validationResult(req)
+
+    // verify empty result
+    if(!result.isEmpty()){
+        // error
+        return res.render('auth/signup', {
+            title: 'Crear cuenta',
+            csrfToken: req.csrfToken(),
+            errors: result.array(),
+            user: {
+                name: req.body.name,
+                email: req.body.email,
+            }
+        })
+    }
 }
 
 
