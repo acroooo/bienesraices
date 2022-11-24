@@ -7,15 +7,34 @@ import { emailSignup, resetPasswordEmail } from '../../helpers/email.js';
 
 import bcrypt from 'bcrypt'
 
-// Form Login
+// LOGIN FORM
 const loginForm = (req, res) => {
     res.render('./auth/login', {
         state: true,
         title: 'Iniciar sesión',
+        csrfToken: req.csrfToken()
     });
 };
 
-// Form Registro
+// LOGIN
+const autenticate = (req, res) => {
+
+    // primero encontrar si el usuario existe
+    User.findOne({
+        email: req.body.email
+    })
+
+       .then(user => {
+
+            if (user) {
+                if (user.password === req.body.password) {
+                    res.render()
+                }
+    // verificar que la contraseña es correcta
+}
+
+
+// SIGNUP FORM
 const signupForm = (req, res) => {
     res.render('./auth/signup', {
         state: true,
@@ -24,7 +43,7 @@ const signupForm = (req, res) => {
     });
 };
 
-// Registrar usuario
+// SIGNUP
 const register = async (req, res) => {
     //validation
     await check('name').notEmpty().withMessage('El campo nombre no puede estar vacío').run(req)
@@ -94,7 +113,7 @@ const register = async (req, res) => {
     })
 }
 
-// Form Recuperar contraseña
+// FORM RESET PASSWORD
 const recoverPasswordForm = (req, res) => {
     res.render('./auth/recoverPassword', {
         title: 'Recupera el acceso a tu cuenta',
@@ -102,6 +121,8 @@ const recoverPasswordForm = (req, res) => {
     })
 }
 
+
+// RESET PASSWORD
 const resetPassword = async(req, res) => {
     // validation
     console.log(req.body)
