@@ -66,7 +66,15 @@ const autenticate = async (req, res) => {
     }
 
     // autenticar usuario
-    const token = generateJWT(user.id)
+    const token = generateJWT({id: user.id, name: user.name})
+
+    // almacenar en un cookie
+    return res.cookie('_token', token, {
+        httpOnly: true,
+        // samesite
+        // secure -> para certificado https
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    }).redirect('/properties')
 }
 
 
