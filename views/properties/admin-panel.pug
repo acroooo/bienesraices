@@ -1,0 +1,11 @@
+extends ../layouts/index
+
+block content
+    .py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Inmobiliaria
+            span.font-normal.mx-2 Soldati
+        h2.text-center.font-extrabold.text-2xl=title
+
+    div(class="container mx-auto")
+        a(href="/my-properties/new" class="bg-blue-600 hover:bg-blue-700 rounded text-xs font-bold text-white text-center uppercase w-full md:w-1/6 my-5 px-10 inline-block py-2") Agregar propiedad
+            

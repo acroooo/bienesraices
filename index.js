@@ -1,10 +1,18 @@
+// express
 import express from 'express'; // ES6 import'
+
+// third
 import csrf from 'csurf'; //
 import cookieParser from 'cookie-parser'; //
-import db from './config/db.js'; 
-// Routes import
-import userRoutes from './routes/auth/userRoutes.js';
 
+// db
+import db from './config/db.js'; 
+
+// rutas
+import userRoutes from './routes/auth/userRoutes.js';
+import propertiesRoutes from './routes/auth/propertiesRoutes.js';
+
+// app
 const app = express(); // Create an express app
 const port = process.env.PORT || 3000;
 
@@ -33,6 +41,7 @@ app.set('views', './views'); // Set the views folder
 
 // Routing
 app.use('/auth', userRoutes);
+app.use('/', propertiesRoutes);
 
 // public
 app.use(express.static('public'));
