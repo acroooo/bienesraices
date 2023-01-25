@@ -303,6 +303,7 @@ const confirmAccount = async (req, res) => {
 
 export {
     loginForm,
+    autenticate,
     signupForm,
     recoverPasswordForm,
     register,

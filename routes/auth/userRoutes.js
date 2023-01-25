@@ -4,7 +4,7 @@ const router = express.Router();
 
 // login
 router.get('/login', loginForm);
-router.post('/login', authenticate);
+router.post('/login', autenticate);
 
 // registro
 router.get('/signup', signupForm);
